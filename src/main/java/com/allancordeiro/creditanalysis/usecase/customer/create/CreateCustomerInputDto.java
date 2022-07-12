@@ -9,5 +9,6 @@ public record CreateCustomerInputDto(
         String cpf,
         String password,
         Float IncomeValue,
-        Address address
+        AddressInputDto address
 ) {}
+

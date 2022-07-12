@@ -5,6 +5,7 @@ import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.Addr
 import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.repositories.customer.AddressRepository;
 import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.repositories.customer.CustomerRepository;
 import com.allancordeiro.creditanalysis.infrastructure.gateway.customer.CustomerGatewayDb;
+import com.allancordeiro.creditanalysis.usecase.customer.create.AddressInputDto;
 import com.allancordeiro.creditanalysis.usecase.customer.create.CreateCustomerInputDto;
 import com.allancordeiro.creditanalysis.usecase.customer.create.CreateCustomerOutputDto;
 import com.allancordeiro.creditanalysis.usecase.customer.create.CreateCustomerUseCase;
@@ -38,7 +39,7 @@ public class FindCustomerUseCaseIntegrationTest {
                 "841.676.580-46",
                 "1234",
                 7000.0F,
-                new Address(
+                new AddressInputDto(
                         "Street name",
                         "123",
                         "Some neighborhood",
@@ -63,12 +64,12 @@ public class FindCustomerUseCaseIntegrationTest {
         assertEquals(customerInputDto.rg(), outputDto.get().rg());
         assertEquals(customerInputDto.cpf(), outputDto.get().cpf());
         assertEquals(customerInputDto.IncomeValue(), outputDto.get().IncomeValue());
-        assertEquals(customerInputDto.address().getStreet(), outputDto.get().address().getStreet());
-        assertEquals(customerInputDto.address().getNumber(), outputDto.get().address().getNumber());
-        assertEquals(customerInputDto.address().getCity(), outputDto.get().address().getCity());
-        assertEquals(customerInputDto.address().getNeighborhood(), outputDto.get().address().getNeighborhood());
-        assertEquals(customerInputDto.address().getState(), outputDto.get().address().getState());
-        assertEquals(customerInputDto.address().getComplement(), outputDto.get().address().getComplement());
+        assertEquals(customerInputDto.address().street(), outputDto.get().address().getStreet());
+        assertEquals(customerInputDto.address().number(), outputDto.get().address().getNumber());
+        assertEquals(customerInputDto.address().city(), outputDto.get().address().getCity());
+        assertEquals(customerInputDto.address().neighborhood(), outputDto.get().address().getNeighborhood());
+        assertEquals(customerInputDto.address().state(), outputDto.get().address().getState());
+        assertEquals(customerInputDto.address().complement(), outputDto.get().address().getComplement());
     }
 
 }

@@ -11,6 +11,7 @@ public class Address {
     private String state;
     private String complement;
 
+    public Address() {}
     public Address(String street, String number, String neighborhood, String cep,
                    String city, String state, String complement) throws Exception {
         this.street = street;

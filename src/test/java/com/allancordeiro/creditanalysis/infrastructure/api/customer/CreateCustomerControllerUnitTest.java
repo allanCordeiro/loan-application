@@ -2,9 +2,7 @@ package com.allancordeiro.creditanalysis.infrastructure.api.customer;
 
 
 import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.Address;
-import com.allancordeiro.creditanalysis.usecase.customer.create.CreateCustomerInputDto;
-import com.allancordeiro.creditanalysis.usecase.customer.create.CreateCustomerOutputDto;
-import com.allancordeiro.creditanalysis.usecase.customer.create.CreateCustomerUseCase;
+import com.allancordeiro.creditanalysis.usecase.customer.create.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,6 +37,7 @@ public class CreateCustomerControllerUnitTest {
 
     @Test
     public void should_create_a_customer() throws Exception {
+
         CreateCustomerInputDto inputDto = new CreateCustomerInputDto(
                 "Customer Name",
                 "customer@emaiil.com",
@@ -46,14 +45,14 @@ public class CreateCustomerControllerUnitTest {
                 "841.676.580-46",
                 "1234",
                 7000.0F,
-                new Address(
-                        "Street name",
-                        "123",
-                        "Some neighborhood",
-                        "01211-100",
-                        "São Paulo",
-                        "SP",
-                        "Some complement"
+                new AddressInputDto(
+                    "Street name",
+                    "123",
+                    "Some neighborhood",
+                    "01211-100",
+                    "São Paulo",
+                    "SP",
+                    "Some complement"
                 )
         );
 
@@ -65,14 +64,14 @@ public class CreateCustomerControllerUnitTest {
                 "841.676.580-46",
                 "1234",
                 7000.0F,
-                new Address(
-                        "Street name",
-                        "123",
-                        "Some neighborhood",
-                        "01211-100",
-                        "São Paulo",
-                        "SP",
-                        "Some complement"
+                new AddressOutputDto(
+                    "Street name",
+                    "123",
+                    "Some neighborhood",
+                    "01211-100",
+                    "São Paulo",
+                    "SP",
+                    "Some complement"
                 )
         );
         ObjectMapper objectMapper = new ObjectMapper();
@@ -92,13 +91,13 @@ public class CreateCustomerControllerUnitTest {
                 .andExpect(jsonPath("$.rg").value(outputDto.rg()))
                 .andExpect(jsonPath("$.cpf").value(outputDto.cpf()))
                 .andExpect(jsonPath("$.incomeValue").value(outputDto.IncomeValue()))
-                .andExpect(jsonPath("$.address.street").value(outputDto.address().getStreet()))
-                .andExpect(jsonPath("$.address.number").value(outputDto.address().getNumber()))
-                .andExpect(jsonPath("$.address.neighborhood").value(outputDto.address().getNeighborhood()))
-                .andExpect(jsonPath("$.address.cep").value(outputDto.address().getCep()))
-                .andExpect(jsonPath("$.address.city").value(outputDto.address().getCity()))
-                .andExpect(jsonPath("$.address.state").value(outputDto.address().getState()))
-                .andExpect(jsonPath("$.address.complement").value(outputDto.address().getComplement()));
+                .andExpect(jsonPath("$.address.street").value(outputDto.address().street()))
+                .andExpect(jsonPath("$.address.number").value(outputDto.address().number()))
+                .andExpect(jsonPath("$.address.neighborhood").value(outputDto.address().neighborhood()))
+                .andExpect(jsonPath("$.address.cep").value(outputDto.address().cep()))
+                .andExpect(jsonPath("$.address.city").value(outputDto.address().city()))
+                .andExpect(jsonPath("$.address.state").value(outputDto.address().state()))
+                .andExpect(jsonPath("$.address.complement").value(outputDto.address().complement()));
     }
 
     @Test
@@ -110,7 +109,7 @@ public class CreateCustomerControllerUnitTest {
                 "841.676.580-46",
                 "1234",
                 7000.0F,
-                new Address(
+                new AddressInputDto(
                         "Street name",
                         "123",
                         "Some neighborhood",

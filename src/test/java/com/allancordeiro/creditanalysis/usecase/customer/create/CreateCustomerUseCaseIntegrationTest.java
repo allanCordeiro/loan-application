@@ -32,7 +32,7 @@ public class CreateCustomerUseCaseIntegrationTest {
                 "841.676.580-46",
                 "1234",
                 7000.0F,
-                new Address(
+                new AddressInputDto(
                         "Street name",
                         "123",
                         "Some neighborhood",
@@ -49,11 +49,11 @@ public class CreateCustomerUseCaseIntegrationTest {
         assertEquals(inputDto.rg(), outputDto.rg());
         assertEquals(inputDto.cpf(), outputDto.cpf());
         assertEquals(inputDto.IncomeValue(), outputDto.IncomeValue());
-        assertEquals(inputDto.address().getStreet(), outputDto.address().getStreet());
-        assertEquals(inputDto.address().getNumber(), outputDto.address().getNumber());
-        assertEquals(inputDto.address().getCity(), outputDto.address().getCity());
-        assertEquals(inputDto.address().getNeighborhood(), outputDto.address().getNeighborhood());
-        assertEquals(inputDto.address().getState(), outputDto.address().getState());
-        assertEquals(inputDto.address().getComplement(), outputDto.address().getComplement());
+        assertEquals(inputDto.address().street(), outputDto.address().street());
+        assertEquals(inputDto.address().number(), outputDto.address().number());
+        assertEquals(inputDto.address().city(), outputDto.address().city());
+        assertEquals(inputDto.address().neighborhood(), outputDto.address().neighborhood());
+        assertEquals(inputDto.address().state(), outputDto.address().state());
+        assertEquals(inputDto.address().complement(), outputDto.address().complement());
     }
 }

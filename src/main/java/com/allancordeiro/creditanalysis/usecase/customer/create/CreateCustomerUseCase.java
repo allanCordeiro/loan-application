@@ -22,7 +22,15 @@ public class CreateCustomerUseCase {
     }
 
     public CreateCustomerOutputDto execute(CreateCustomerInputDto customer) throws Exception {
-        Address address = customer.address();
+        Address address = new Address(
+                customer.address().street(),
+                customer.address().number(),
+                customer.address().neighborhood(),
+                customer.address().cep(),
+                customer.address().city(),
+                customer.address().state(),
+                customer.address().complement()
+        );
         Customer newCustomer = new CustomerFactory().Create(
                 customer.name(),
                 customer.email(),
@@ -42,7 +50,15 @@ public class CreateCustomerUseCase {
                 newCustomer.getCpf().GetMaskedCpf(),
                 newCustomer.getPassword(),
                 newCustomer.getIncomeValue().floatValue(),
-                newCustomer.getAddress()
+                new AddressOutputDto(
+                        newCustomer.getAddress().getStreet(),
+                        newCustomer.getAddress().getNumber(),
+                        newCustomer.getAddress().getNeighborhood(),
+                        newCustomer.getAddress().getCep(),
+                        newCustomer.getAddress().getCity(),
+                        newCustomer.getAddress().getState(),
+                        newCustomer.getAddress().getComplement()
+                )
         );
     }
 }

@@ -5,6 +5,7 @@ import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.Addr
 import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.repositories.customer.AddressRepository;
 import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.repositories.customer.CustomerRepository;
 import com.allancordeiro.creditanalysis.infrastructure.gateway.customer.CustomerGatewayDb;
+import com.allancordeiro.creditanalysis.usecase.customer.create.AddressInputDto;
 import com.allancordeiro.creditanalysis.usecase.customer.create.CreateCustomerInputDto;
 import com.allancordeiro.creditanalysis.usecase.customer.create.CreateCustomerOutputDto;
 import com.allancordeiro.creditanalysis.usecase.customer.create.CreateCustomerUseCase;
@@ -39,7 +40,7 @@ public class UpdateCustomerUseCaseIntegrationTest {
                 "841.676.580-46",
                 "1234",
                 7000.0F,
-                new Address(
+                new AddressInputDto(
                         "Street name",
                         "123",
                         "Some neighborhood",

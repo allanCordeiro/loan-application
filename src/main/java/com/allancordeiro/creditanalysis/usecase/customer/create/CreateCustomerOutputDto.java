@@ -10,5 +10,5 @@ public record CreateCustomerOutputDto(
         String cpf,
         String password,
         Float IncomeValue,
-        Address address
+        AddressOutputDto address
 ) {}
