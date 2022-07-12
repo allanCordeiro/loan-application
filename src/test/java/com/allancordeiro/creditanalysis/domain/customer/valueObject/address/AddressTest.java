@@ -1,5 +1,6 @@
 package com.allancordeiro.creditanalysis.domain.customer.valueObject.address;
 
+import com.allancordeiro.creditanalysis.domain.customer.exceptions.name.NameIsMandatoryException;
 import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.exceptions.cep.CepInvalidFormatException;
 import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.exceptions.cep.CepIsMandatoryException;
 import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.exceptions.city.CityIsMandatoryException;
@@ -8,9 +9,15 @@ import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.exce
 import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.exceptions.state.StateIsMandatoryException;
 import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.exceptions.street.StreetIsMandatory;
 
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+@ExtendWith(MockitoExtension.class)
 public class AddressTest {
     @Test
     public void should_create_and_address() throws Exception {
@@ -54,94 +61,115 @@ public class AddressTest {
         Assertions.assertEquals(address.getState(), "SP");
     }
 
-    @Test(expected = StreetIsMandatory.class)
+    @Test
     public void should_throw_an_error_when_street_is_missing() throws Exception {
-        Address address = new Address(
-                "",
-                "123",
-                "Some neighborhood",
-                "01211-100",
-                "São Paulo",
-                "SP",
-                "Some complement"
-        );
+        Exception exception = assertThrows(StreetIsMandatory.class, () -> {
+            Address address = new Address(
+                    "",
+                    "123",
+                    "Some neighborhood",
+                    "01211-100",
+                    "São Paulo",
+                    "SP",
+                    "Some complement"
+            );
+        });
+        assertEquals(StreetIsMandatory.class, exception.getClass());
     }
 
-    @Test(expected = NumberIsMandatoryException.class)
+    @Test
     public void should_throw_an_error_when_number_is_missing() throws Exception {
-        Address address = new Address(
-                "Street Name",
-                "",
-                "Some neighborhood",
-                "01211-100",
-                "São Paulo",
-                "SP",
-                "Some complement"
-        );
+        Exception exception = assertThrows(NumberIsMandatoryException.class, () -> {
+            Address address = new Address(
+                    "Street Name",
+                    "",
+                    "Some neighborhood",
+                    "01211-100",
+                    "São Paulo",
+                    "SP",
+                    "Some complement"
+            );
+        });
+        assertEquals(NumberIsMandatoryException.class, exception.getClass());
     }
 
-    @Test(expected = NeighborhoodIsMandatoryException.class)
+    @Test
     public void should_throw_an_error_when_neighborhood_is_missing() throws Exception {
-        Address address = new Address(
-                "Street Name",
-                "123",
-                "",
-                "01211-100",
-                "São Paulo",
-                "SP",
-                "Some complement"
-        );
+        Exception exception = assertThrows(NeighborhoodIsMandatoryException.class, () -> {
+            Address address = new Address(
+                    "Street Name",
+                    "123",
+                    "",
+                    "01211-100",
+                    "São Paulo",
+                    "SP",
+                    "Some complement"
+            );
+        });
+        assertEquals(NeighborhoodIsMandatoryException.class, exception.getClass());
     }
 
-    @Test(expected = CepIsMandatoryException.class)
+    @Test
     public void should_throw_an_error_when_cep_is_missing() throws Exception {
-        Address address = new Address(
-                "Street Name",
-                "123",
-                "Some neighborhood",
-                "",
-                "São Paulo",
-                "SP",
-                "Some complement"
-        );
+        Exception exception = assertThrows(CepIsMandatoryException.class, () -> {
+            Address address = new Address(
+                    "Street Name",
+                    "123",
+                    "Some neighborhood",
+                    "",
+                    "São Paulo",
+                    "SP",
+                    "Some complement"
+            );
+        });
+        assertEquals(CepIsMandatoryException.class, exception.getClass());
     }
 
-    @Test(expected = CityIsMandatoryException.class)
+    @Test
     public void should_throw_an_error_when_city_is_missing() throws Exception {
-        Address address = new Address(
-                "Street Name",
-                "123",
-                "Some neighborhood",
-                "01211-100",
-                "",
-                "SP",
-                "Some complement"
-        );
+        Exception exception = assertThrows(CityIsMandatoryException.class, () -> {
+            Address address = new Address(
+                    "Street Name",
+                    "123",
+                    "Some neighborhood",
+                    "01211-100",
+                    "",
+                    "SP",
+                    "Some complement"
+            );
+        });
+        assertEquals(CityIsMandatoryException.class, exception.getClass());
     }
 
-    @Test(expected = StateIsMandatoryException.class)
+    @Test
     public void should_throw_an_error_when_state_is_missing() throws Exception {
-        Address address = new Address(
-                "Street Name",
-                "123",
-                "Some neighborhood",
-                "01211-100",
-                "São Paulo",
-                "",
-                "Some complement"
-        );
+        Exception exception = assertThrows(StateIsMandatoryException.class, () -> {
+            Address address = new Address(
+                    "Street Name",
+                    "123",
+                    "Some neighborhood",
+                    "01211-100",
+                    "São Paulo",
+                    "",
+                    "Some complement"
+            );
+        });
+        assertEquals(StateIsMandatoryException.class, exception.getClass());
     }
 
-    @Test(expected = CepInvalidFormatException.class)
+    @Test
     public void should_throw_an_error_when_cep_is_invalid() throws Exception {
-        Address address = new Address(
-                "Street Name",
-                "123",
-                "Some neighborhood",
-                "01211100",
-                "São Paulo",
-                "SP",
-                "Some complement"
-        );
+        Exception exception = assertThrows(CepInvalidFormatException.class, () -> {
+            Address address = new Address(
+                    "Street Name",
+                    "123",
+                    "Some neighborhood",
+                    "01211100",
+                    "São Paulo",
+                    "SP",
+                    "Some complement"
+            );
+        });
+        assertEquals(CepInvalidFormatException.class, exception.getClass());
     }
 }

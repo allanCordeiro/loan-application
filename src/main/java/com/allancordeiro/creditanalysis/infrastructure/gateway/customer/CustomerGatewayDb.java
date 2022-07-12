@@ -12,7 +12,6 @@ import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.repositorie
 import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.service.AddressService;
 import org.springframework.stereotype.Component;
 
-
 import java.util.Optional;
 import java.util.UUID;
 

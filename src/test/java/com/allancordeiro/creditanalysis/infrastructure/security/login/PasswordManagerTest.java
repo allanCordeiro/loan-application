@@ -1,8 +1,11 @@
 package com.allancordeiro.creditanalysis.infrastructure.security.login;
 
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 public class PasswordManagerTest {
     @Test
     public void should_receive_a_valid_password() {

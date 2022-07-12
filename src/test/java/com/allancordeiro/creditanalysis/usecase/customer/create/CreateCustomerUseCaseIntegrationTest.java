@@ -4,8 +4,9 @@ import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.Addr
 import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.repositories.customer.AddressRepository;
 import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.repositories.customer.CustomerRepository;
 import com.allancordeiro.creditanalysis.infrastructure.gateway.customer.CustomerGatewayDb;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -13,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-@RunWith(SpringRunner.class)
+@ExtendWith(MockitoExtension.class)
 @DataJpaTest
 public class CreateCustomerUseCaseIntegrationTest {
 

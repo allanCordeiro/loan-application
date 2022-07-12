@@ -3,8 +3,8 @@ package com.allancordeiro.creditanalysis.domain.customer.factory;
 import com.allancordeiro.creditanalysis.domain.customer.entity.Customer;
 import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.Address;
 import com.allancordeiro.creditanalysis.domain.customer.valueObject.cpf.Cpf;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
