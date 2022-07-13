@@ -63,7 +63,7 @@ public class FindCustomerUseCaseIntegrationTest {
         assertEquals(customerInputDto.email(), outputDto.get().email());
         assertEquals(customerInputDto.rg(), outputDto.get().rg());
         assertEquals(customerInputDto.cpf(), outputDto.get().cpf());
-        assertEquals(customerInputDto.IncomeValue(), outputDto.get().IncomeValue());
+        assertEquals(customerInputDto.incomeValue(), outputDto.get().IncomeValue());
         assertEquals(customerInputDto.address().street(), outputDto.get().address().getStreet());
         assertEquals(customerInputDto.address().number(), outputDto.get().address().getNumber());
         assertEquals(customerInputDto.address().city(), outputDto.get().address().getCity());

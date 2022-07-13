@@ -35,7 +35,7 @@ public class CreateCustomerUseCase {
                 customer.name(),
                 customer.email(),
                 customer.rg(),
-                customer.IncomeValue(),
+                customer.incomeValue(),
                 passwordManager.encodePassword(customer.password()),
                 customer.cpf(),
                 address

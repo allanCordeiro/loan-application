@@ -1,6 +1,7 @@
 package com.allancordeiro.creditanalysis.infrastructure.api.customer;
 
 
+import com.allancordeiro.creditanalysis.domain.customer.exceptions.name.NameIsMandatoryException;
 import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.Address;
 import com.allancordeiro.creditanalysis.usecase.customer.create.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -78,7 +79,7 @@ public class CreateCustomerControllerUnitTest {
 
         when(this.useCase.execute(inputDto)).thenReturn(outputDto);
 
-        this.mockMvc.perform(MockMvcRequestBuilders.post("/customers")
+        this.mockMvc.perform(post("/customers")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(inputDto))
                         .characterEncoding("utf-8")
@@ -90,7 +91,7 @@ public class CreateCustomerControllerUnitTest {
                 .andExpect(jsonPath("$.email").value(outputDto.email()))
                 .andExpect(jsonPath("$.rg").value(outputDto.rg()))
                 .andExpect(jsonPath("$.cpf").value(outputDto.cpf()))
-                .andExpect(jsonPath("$.incomeValue").value(outputDto.IncomeValue()))
+                .andExpect(jsonPath("$.incomeValue").value(outputDto.incomeValue()))
                 .andExpect(jsonPath("$.address.street").value(outputDto.address().street()))
                 .andExpect(jsonPath("$.address.number").value(outputDto.address().number()))
                 .andExpect(jsonPath("$.address.neighborhood").value(outputDto.address().neighborhood()))
@@ -121,14 +122,14 @@ public class CreateCustomerControllerUnitTest {
         );
 
         ObjectMapper objectMapper = new ObjectMapper();
+        when(this.useCase.execute(inputDto)).thenThrow(NameIsMandatoryException.class);
 
         this.mockMvc.perform(post("/customers")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(inputDto))
-                        .characterEncoding("utf-8")
-                )
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                        .characterEncoding("utf-8"))
                 .andExpect(status().isBadRequest());
+
                 //TODO:: get error message
     }
     //campos obrigatórios
