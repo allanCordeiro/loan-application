@@ -8,7 +8,6 @@ public record CreateCustomerOutputDto(
         String email,
         String rg,
         String cpf,
-        String password,
         Float incomeValue,
         AddressOutputDto address
 ) {}

@@ -14,9 +14,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -63,7 +67,6 @@ public class CreateCustomerControllerUnitTest {
                 "customer@emaiil.com",
                 "11321132-7",
                 "841.676.580-46",
-                "1234",
                 7000.0F,
                 new AddressOutputDto(
                     "Street name",
@@ -122,15 +125,14 @@ public class CreateCustomerControllerUnitTest {
         );
 
         ObjectMapper objectMapper = new ObjectMapper();
-        when(this.useCase.execute(inputDto)).thenThrow(NameIsMandatoryException.class);
 
-        this.mockMvc.perform(post("/customers")
+        String body = this.mockMvc.perform(post("/customers")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(inputDto))
                         .characterEncoding("utf-8"))
-                .andExpect(status().isBadRequest());
-
-                //TODO:: get error message
+                .andExpect(status().isBadRequest())
+                //.andExpect(jsonPath("$.message").value("{'field': 'name','message': 'must not be empty'},"))
+                .andReturn().getResolvedException().getMessage();
     }
     //campos obrigatórios
     /*

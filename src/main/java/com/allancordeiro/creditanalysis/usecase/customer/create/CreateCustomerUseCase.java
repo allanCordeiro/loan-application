@@ -48,7 +48,6 @@ public class CreateCustomerUseCase {
                 newCustomer.getEmail(),
                 newCustomer.getRg(),
                 newCustomer.getCpf().GetMaskedCpf(),
-                newCustomer.getPassword(),
                 newCustomer.getIncomeValue().floatValue(),
                 new AddressOutputDto(
                         newCustomer.getAddress().getStreet(),

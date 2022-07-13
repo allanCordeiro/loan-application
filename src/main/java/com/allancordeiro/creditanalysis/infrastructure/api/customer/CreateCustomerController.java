@@ -7,7 +7,10 @@ import com.allancordeiro.creditanalysis.usecase.customer.create.CreateCustomerOu
 import com.allancordeiro.creditanalysis.usecase.customer.create.CreateCustomerUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 public class CreateCustomerController {
@@ -20,11 +23,14 @@ public class CreateCustomerController {
 
     @PostMapping("/customers")
     @ResponseStatus(HttpStatus.CREATED)
-    public CreateCustomerOutputDto createCustomer(@RequestBody CreateCustomerInputDto request) throws Exception {
+    public CreateCustomerOutputDto createCustomer(@Valid @RequestBody CreateCustomerInputDto request) throws Exception {
         try {
             return this.createCustomerUseCase.execute(request);
         } catch (CustomerGeneralException ex) {
             throw new BadRequestException(ex);
+        } catch (Exception ex) {
+            System.out.println(ex);
+            throw ex;
         }
     }
 }
