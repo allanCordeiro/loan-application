@@ -1,6 +1,8 @@
 package com.allancordeiro.creditanalysis.domain.customer.exceptions.status;
 
-public class AddressIsRequiredToActivateCustomerException extends Exception{
+import com.allancordeiro.creditanalysis.domain.customer.exceptions.CustomerGeneralException;
+
+public class AddressIsRequiredToActivateCustomerException extends CustomerGeneralException {
     public AddressIsRequiredToActivateCustomerException() {
         super("address is required to activate a customer");
     }

@@ -1,6 +1,8 @@
 package com.allancordeiro.creditanalysis.domain.customer.exceptions.name;
 
-public class NameIsMandatoryException extends Exception {
+import com.allancordeiro.creditanalysis.domain.customer.exceptions.CustomerGeneralException;
+
+public class NameIsMandatoryException extends CustomerGeneralException {
     public NameIsMandatoryException() {
         super("name is mandatory");
     }

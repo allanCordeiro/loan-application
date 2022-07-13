@@ -1,6 +1,8 @@
 package com.allancordeiro.creditanalysis.domain.customer.exceptions.email;
 
-public class EmailInvalidFormatException extends Exception {
+import com.allancordeiro.creditanalysis.domain.customer.exceptions.CustomerGeneralException;
+
+public class EmailInvalidFormatException extends CustomerGeneralException {
     public EmailInvalidFormatException() {
         super("email is in invalid format");
     }

@@ -1,6 +1,8 @@
 package com.allancordeiro.creditanalysis.domain.customer.exceptions.rg;
 
-public class RgIsMandatoryException extends Exception{
+import com.allancordeiro.creditanalysis.domain.customer.exceptions.CustomerGeneralException;
+
+public class RgIsMandatoryException extends CustomerGeneralException {
     public RgIsMandatoryException() {
         super("rg is mandatory");
     }

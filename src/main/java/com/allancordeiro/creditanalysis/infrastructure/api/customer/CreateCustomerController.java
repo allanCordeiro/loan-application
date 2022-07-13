@@ -1,6 +1,6 @@
 package com.allancordeiro.creditanalysis.infrastructure.api.customer;
 
-import com.allancordeiro.creditanalysis.domain.customer.exceptions.name.NameIsMandatoryException;
+import com.allancordeiro.creditanalysis.domain.customer.exceptions.CustomerGeneralException;
 import com.allancordeiro.creditanalysis.infrastructure.api.exception.BadRequestException;
 import com.allancordeiro.creditanalysis.usecase.customer.create.CreateCustomerInputDto;
 import com.allancordeiro.creditanalysis.usecase.customer.create.CreateCustomerOutputDto;
@@ -23,7 +23,7 @@ public class CreateCustomerController {
     public CreateCustomerOutputDto createCustomer(@RequestBody CreateCustomerInputDto request) throws Exception {
         try {
             return this.createCustomerUseCase.execute(request);
-        } catch (NameIsMandatoryException ex) {
+        } catch (CustomerGeneralException ex) {
             throw new BadRequestException(ex);
         }
     }

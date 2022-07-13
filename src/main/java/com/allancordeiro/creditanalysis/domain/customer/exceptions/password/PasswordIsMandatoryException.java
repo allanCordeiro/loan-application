@@ -1,6 +1,8 @@
 package com.allancordeiro.creditanalysis.domain.customer.exceptions.password;
 
-public class PasswordIsMandatoryException extends Exception {
+import com.allancordeiro.creditanalysis.domain.customer.exceptions.CustomerGeneralException;
+
+public class PasswordIsMandatoryException extends CustomerGeneralException {
     public PasswordIsMandatoryException() {
         super("password is mandatory");
     }
