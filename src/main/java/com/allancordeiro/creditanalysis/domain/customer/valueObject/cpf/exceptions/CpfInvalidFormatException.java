@@ -1,6 +1,8 @@
 package com.allancordeiro.creditanalysis.domain.customer.valueObject.cpf.exceptions;
 
-public class CpfInvalidFormatException extends Exception {
+import com.allancordeiro.creditanalysis.domain.customer.exceptions.CustomerGeneralException;
+
+public class CpfInvalidFormatException extends CustomerGeneralException {
     public CpfInvalidFormatException() {
         super("cpf is invalid");
     }

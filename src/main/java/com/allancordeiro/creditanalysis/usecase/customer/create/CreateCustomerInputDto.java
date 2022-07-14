@@ -20,6 +20,7 @@ public record CreateCustomerInputDto(
         String password,
         @NotNull
         Float incomeValue,
+        @NotNull
         AddressInputDto address
 ) {}
 

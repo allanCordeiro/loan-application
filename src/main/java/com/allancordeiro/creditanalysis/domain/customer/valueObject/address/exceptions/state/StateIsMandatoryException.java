@@ -1,6 +1,8 @@
 package com.allancordeiro.creditanalysis.domain.customer.valueObject.address.exceptions.state;
 
-public class StateIsMandatoryException extends Exception{
+import com.allancordeiro.creditanalysis.domain.customer.exceptions.CustomerGeneralException;
+
+public class StateIsMandatoryException extends CustomerGeneralException {
     public StateIsMandatoryException() {
         super("state is mandatory");
     }

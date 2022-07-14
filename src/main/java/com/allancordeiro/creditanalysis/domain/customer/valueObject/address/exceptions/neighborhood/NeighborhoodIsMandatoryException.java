@@ -1,6 +1,8 @@
 package com.allancordeiro.creditanalysis.domain.customer.valueObject.address.exceptions.neighborhood;
 
-public class NeighborhoodIsMandatoryException extends  Exception{
+import com.allancordeiro.creditanalysis.domain.customer.exceptions.CustomerGeneralException;
+
+public class NeighborhoodIsMandatoryException extends CustomerGeneralException {
     public NeighborhoodIsMandatoryException() {
         super("neighborhood is mandatory");
     }

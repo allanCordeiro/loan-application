@@ -28,7 +28,7 @@ public class CustomerValidator implements ValidatorInterface<Customer> {
             throw new RgIsMandatoryException();
         }
 
-        if(entity.getIncomeValue().floatValue() <= 0.0) {
+        if(entity.getIncomeValue().floatValue() <= 0.0F) {
             throw new IncomeValueIsMandatoryException();
         }
 

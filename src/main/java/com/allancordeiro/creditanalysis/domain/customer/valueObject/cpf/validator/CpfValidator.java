@@ -15,7 +15,6 @@ public class CpfValidator implements ValidatorInterface<String> {
         if (this.entity.length() != 11) {
             throw new CpfInvalidFormatException();
         }
-        //TODO: validate mask data
 
         if (this.entity.equals("0".repeat(11)) ||
                 this.entity.equals("1".repeat(11)) ||
