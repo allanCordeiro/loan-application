@@ -1,6 +1,8 @@
-package com.allancordeiro.creditanalysis.usecase.customer.create;
+package com.allancordeiro.creditanalysis.usecase.customer.update;
 
-public record AddressOutputDto(
+import java.util.Optional;
+
+public record UpdateAddressOutputDto(
         String street,
         String number,
         String neighborhood,

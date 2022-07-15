@@ -49,7 +49,7 @@ public class CreateCustomerUseCase {
                 newCustomer.getRg(),
                 newCustomer.getCpf().GetMaskedCpf(),
                 newCustomer.getIncomeValue().floatValue(),
-                new AddressOutputDto(
+                new CreateAddressOutputDto(
                         newCustomer.getAddress().getStreet(),
                         newCustomer.getAddress().getNumber(),
                         newCustomer.getAddress().getNeighborhood(),

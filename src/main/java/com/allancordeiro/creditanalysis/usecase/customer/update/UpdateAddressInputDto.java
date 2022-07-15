@@ -1,8 +1,8 @@
-package com.allancordeiro.creditanalysis.usecase.customer.create;
+package com.allancordeiro.creditanalysis.usecase.customer.update;
 
 import javax.validation.constraints.NotEmpty;
 
-public record AddressInputDto(
+public record UpdateAddressInputDto(
         @NotEmpty
         String street,
         @NotEmpty

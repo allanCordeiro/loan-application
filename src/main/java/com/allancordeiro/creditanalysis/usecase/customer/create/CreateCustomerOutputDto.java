@@ -1,7 +1,5 @@
 package com.allancordeiro.creditanalysis.usecase.customer.create;
 
-import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.Address;
-
 public record CreateCustomerOutputDto(
         String id,
         String name,
@@ -9,5 +7,5 @@ public record CreateCustomerOutputDto(
         String rg,
         String cpf,
         Float incomeValue,
-        AddressOutputDto address
+        CreateAddressOutputDto address
 ) {}

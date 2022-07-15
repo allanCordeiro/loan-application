@@ -1,7 +1,5 @@
 package com.allancordeiro.creditanalysis.usecase.customer.create;
 
-import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.Address;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -21,6 +19,6 @@ public record CreateCustomerInputDto(
         @NotNull
         Float incomeValue,
         @NotNull
-        AddressInputDto address
+        CreateAddressInputDto address
 ) {}
 

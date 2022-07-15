@@ -1,6 +1,5 @@
 package com.allancordeiro.creditanalysis.infrastructure.api.customer;
 
-import com.allancordeiro.creditanalysis.domain.customer.exceptions.email.EmailInvalidFormatException;
 import com.allancordeiro.creditanalysis.domain.customer.exceptions.incomeValue.IncomeValueIsMandatoryException;
 import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.exceptions.cep.CepInvalidFormatException;
 import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.exceptions.cep.CepIsMandatoryException;
@@ -51,7 +50,7 @@ public class CreateCustomerControllerUnitTest {
                 "841.676.580-46",
                 "1234",
                 7000.0F,
-                new AddressInputDto(
+                new CreateAddressInputDto(
                     "Street name",
                     "123",
                     "Some neighborhood",
@@ -69,7 +68,7 @@ public class CreateCustomerControllerUnitTest {
                 "11321132-7",
                 "841.676.580-46",
                 7000.0F,
-                new AddressOutputDto(
+                new CreateAddressOutputDto(
                     "Street name",
                     "123",
                     "Some neighborhood",
@@ -114,7 +113,7 @@ public class CreateCustomerControllerUnitTest {
                 "841.676.580-46",
                 "1234",
                 7000.0F,
-                new AddressInputDto(
+                new CreateAddressInputDto(
                         "Street name",
                         "123",
                         "Some neighborhood",
@@ -143,7 +142,7 @@ public class CreateCustomerControllerUnitTest {
                 "841.676.580-46",
                 "1234",
                 7000.0F,
-                new AddressInputDto(
+                new CreateAddressInputDto(
                         "Street name",
                         "123",
                         "Some neighborhood",
@@ -172,7 +171,7 @@ public class CreateCustomerControllerUnitTest {
                 "841.676.580-46",
                 "1234",
                 7000.0F,
-                new AddressInputDto(
+                new CreateAddressInputDto(
                         "Street name",
                         "123",
                         "Some neighborhood",
@@ -201,7 +200,7 @@ public class CreateCustomerControllerUnitTest {
                 "",
                 "1234",
                 7000.0F,
-                new AddressInputDto(
+                new CreateAddressInputDto(
                         "Street name",
                         "123",
                         "Some neighborhood",
@@ -230,7 +229,7 @@ public class CreateCustomerControllerUnitTest {
                 "841.676.580-46",
                 "1234",
                 0.0F,
-                new AddressInputDto(
+                new CreateAddressInputDto(
                         "Street name",
                         "123",
                         "Some neighborhood",
@@ -260,7 +259,7 @@ public class CreateCustomerControllerUnitTest {
                 "841.676.580-46",
                 "",
                 7000.00F,
-                new AddressInputDto(
+                new CreateAddressInputDto(
                         "Street name",
                         "123",
                         "Some neighborhood",
@@ -289,7 +288,7 @@ public class CreateCustomerControllerUnitTest {
                 "841.676.580-46",
                 "1234",
                 7000.0F,
-                new AddressInputDto(
+                new CreateAddressInputDto(
                         "",
                         "123",
                         "Some neighborhood",
@@ -319,7 +318,7 @@ public class CreateCustomerControllerUnitTest {
                 "841.676.580-46",
                 "1234",
                 7000.0F,
-                new AddressInputDto(
+                new CreateAddressInputDto(
                         "Street",
                         "",
                         "Some neighborhood",
@@ -349,7 +348,7 @@ public class CreateCustomerControllerUnitTest {
                 "841.676.580-46",
                 "1234",
                 7000.0F,
-                new AddressInputDto(
+                new CreateAddressInputDto(
                         "Street",
                         "123",
                         "",
@@ -379,7 +378,7 @@ public class CreateCustomerControllerUnitTest {
                 "841.676.580-46",
                 "1234",
                 7000.0F,
-                new AddressInputDto(
+                new CreateAddressInputDto(
                         "Street",
                         "123",
                         "Some neighborhood",
@@ -409,7 +408,7 @@ public class CreateCustomerControllerUnitTest {
                 "841.676.580-46",
                 "1234",
                 7000.0F,
-                new AddressInputDto(
+                new CreateAddressInputDto(
                         "Street",
                         "123",
                         "Some neighborhood",
@@ -439,7 +438,7 @@ public class CreateCustomerControllerUnitTest {
                 "841.676.580-46",
                 "1234",
                 7000.0F,
-                new AddressInputDto(
+                new CreateAddressInputDto(
                         "Street",
                         "123",
                         "Some neighborhood",
@@ -469,7 +468,7 @@ public class CreateCustomerControllerUnitTest {
                 "841.676.580-46",
                 "1234",
                 7000.0F,
-                new AddressInputDto(
+                new CreateAddressInputDto(
                         "Street",
                         "123",
                         "Some neighborhood",
@@ -499,7 +498,7 @@ public class CreateCustomerControllerUnitTest {
                 "111.111.111-11",
                 "1234",
                 7000.0F,
-                new AddressInputDto(
+                new CreateAddressInputDto(
                         "Street",
                         "123",
                         "Some neighborhood",
@@ -529,7 +528,7 @@ public class CreateCustomerControllerUnitTest {
                 "841.676.580-46",
                 "1234",
                 7000.0F,
-                new AddressInputDto(
+                new CreateAddressInputDto(
                         "Street",
                         "123",
                         "Some neighborhood",
