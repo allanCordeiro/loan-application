@@ -70,7 +70,15 @@ public class UpdateCustomerUseCaseIntegrationTest {
                 outputData.cpf(),
                 "nova senha",
                 8500.0F,
-                updatedAddress
+                new UpdateAddressInputDto(
+                        updatedAddress.getStreet(),
+                        updatedAddress.getNumber(),
+                        updatedAddress.getNeighborhood(),
+                        updatedAddress.getCep(),
+                        updatedAddress.getCity(),
+                        updatedAddress.getState(),
+                        updatedAddress.getComplement()
+                )
         ));
 
         assertNotNull(customerUpdated.id());
@@ -80,8 +88,14 @@ public class UpdateCustomerUseCaseIntegrationTest {
         assertEquals(customerUpdated.rg(), outputData.rg());
         assertEquals(customerUpdated.cpf(), outputData.cpf());
         assertEquals(customerUpdated.password(), "nova senha");
-        assertEquals(customerUpdated.IncomeValue(), 8500.0F);
-        assertEquals(customerUpdated.address(), updatedAddress);
+        assertEquals(customerUpdated.incomeValue(), 8500.0F);
+        assertEquals(customerUpdated.address().street(), updatedAddress.getStreet());
+        assertEquals(customerUpdated.address().number(), updatedAddress.getNumber());
+        assertEquals(customerUpdated.address().neighborhood(), updatedAddress.getNeighborhood());
+        assertEquals(customerUpdated.address().cep(), updatedAddress.getCep());
+        assertEquals(customerUpdated.address().city(), updatedAddress.getCity());
+        assertEquals(customerUpdated.address().state(), updatedAddress.getState());
+        assertEquals(customerUpdated.address().complement(), updatedAddress.getComplement());
     }
 
 }

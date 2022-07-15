@@ -1,5 +1,6 @@
 package com.allancordeiro.creditanalysis.infrastructure.api.customer;
 
+import com.allancordeiro.creditanalysis.domain.customer.valueObject.cpf.exceptions.CpfCannotBeChangedException;
 import com.allancordeiro.creditanalysis.usecase.customer.create.*;
 import com.allancordeiro.creditanalysis.usecase.customer.update.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,6 +31,9 @@ public class UpdateCustomerControllerUnitTest {
     private UpdateCustomerUseCase useCase;
     @InjectMocks
     private CreateCustomerController createCustomerController;
+
+    @InjectMocks
+    private UpdateCustomerController updateCustomerController;
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -125,15 +129,16 @@ public class UpdateCustomerControllerUnitTest {
         );
 
         when(this.useCase.execute(updateInputDto)).thenReturn(updateOutputDto);
+        mockMvc = MockMvcBuilders.standaloneSetup(updateCustomerController)
+                .build();
 
-        this.mockMvc.perform(put("/customers")
+        this.mockMvc.perform(put("/customers/" + updateInputDto.id())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(this.objectMapper.writeValueAsString(updateInputDto))
                 .characterEncoding("utf-8")
-                .param("id", updateInputDto.id())
                 )
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id").value(updateOutputDto.id()))
                 .andExpect(jsonPath("$.name").value(updateOutputDto.name()))
                 .andExpect(jsonPath("$.email").value(updateOutputDto.email()))
@@ -147,5 +152,37 @@ public class UpdateCustomerControllerUnitTest {
                 .andExpect(jsonPath("$.address.city").value(updateOutputDto.address().city()))
                 .andExpect(jsonPath("$.address.state").value(updateOutputDto.address().state()))
                 .andExpect(jsonPath("$.address.complement").value(updateOutputDto.address().complement()));
+    }
+
+    @Test
+    public void should_send_an_exception_when_tries_to_change_cpf() throws Exception {
+        UpdateCustomerInputDto updateInputDto = new UpdateCustomerInputDto(
+                "62270647-5304-455c-9d43-a66fa3ed08eb",
+                "New Customer name",
+                "customer@emaiil.com",
+                "11321132-7",
+                "841.676.580-46",
+                "NewPassword",
+                7000.0F,
+                new UpdateAddressInputDto(
+                        "New street name",
+                        "21A",
+                        "New Getho",
+                        "01211-150",
+                        "Rio de Janeiro",
+                        "RJ",
+                        ""
+                )
+        );
+
+        when(this.useCase.execute(updateInputDto)).thenThrow(Can.class);
+        mockMvc = MockMvcBuilders.standaloneSetup(updateCustomerController)
+                .build();
+
+        this.mockMvc.perform(put("/customers/" + updateInputDto.id())
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(this.objectMapper.writeValueAsString(updateInputDto))
+                .characterEncoding("utf-8")
+        );
     }
 }
