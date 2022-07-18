@@ -175,7 +175,7 @@ public class UpdateCustomerControllerUnitTest {
                 )
         );
 
-        when(this.useCase.execute(updateInputDto)).thenThrow(Can.class);
+        when(this.useCase.execute(updateInputDto)).thenThrow(CpfCannotBeChangedException.class);
         mockMvc = MockMvcBuilders.standaloneSetup(updateCustomerController)
                 .build();
 

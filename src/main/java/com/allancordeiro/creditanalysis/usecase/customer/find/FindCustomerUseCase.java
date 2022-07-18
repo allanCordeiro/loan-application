@@ -4,9 +4,11 @@ import com.allancordeiro.creditanalysis.domain.customer.entity.Customer;
 import com.allancordeiro.creditanalysis.domain.customer.gateway.CustomerGateway;
 import com.allancordeiro.creditanalysis.infrastructure.gateway.customer.CustomerGatewayDb;
 import com.allancordeiro.creditanalysis.usecase.customer.create.CreateCustomerOutputDto;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class FindCustomerUseCase {
     private final CustomerGateway customerGateway;
 

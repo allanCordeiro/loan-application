@@ -30,7 +30,7 @@ public class CreateCustomerController {
             throw new BadRequestException(ex);
         } catch (Exception ex) {
             System.out.println(ex);
-            throw ex;
+            throw new Exception("Internal server error. Reach out sysadmin.");
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.allancordeiro.creditanalysis.infrastructure.api.exception;
 
+import com.allancordeiro.creditanalysis.infrastructure.security.login.exceptions.UnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -37,6 +38,15 @@ public class GlobalExceptionHandler {
                 request.getDescription(false)
         );
         return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<?> UnauthorizedException(UnauthorizedException ex, WebRequest request) {
+        ExceptionDetails exceptionDetails = new ExceptionDetails(new Date(),
+                ex.getMessage(),
+                request.getDescription(false)
+        );
+        return new ResponseEntity<>(exceptionDetails, HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(Exception.class)

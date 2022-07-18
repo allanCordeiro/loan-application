@@ -7,9 +7,11 @@ import com.allancordeiro.creditanalysis.infrastructure.security.login.exceptions
 import com.allancordeiro.creditanalysis.usecase.customer.find.FindCustomerInputDto;
 import com.allancordeiro.creditanalysis.usecase.customer.find.FindCustomerOutputDto;
 import com.allancordeiro.creditanalysis.usecase.customer.find.FindCustomerUseCase;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class LoginCustomerUseCase {
     private final CustomerGateway customerGateway;
     private final PasswordManager passwordManager;
