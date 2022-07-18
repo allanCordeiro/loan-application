@@ -4,6 +4,7 @@ import com.allancordeiro.creditanalysis.domain.customer.entity.Customer;
 import com.allancordeiro.creditanalysis.domain.customer.exceptions.CustomerNotFoundException;
 import com.allancordeiro.creditanalysis.domain.customer.gateway.CustomerGateway;
 import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.Address;
+import com.allancordeiro.creditanalysis.infrastructure.security.login.PasswordManager;
 import com.allancordeiro.creditanalysis.usecase.customer.create.CreateAddressOutputDto;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +13,11 @@ import java.util.UUID;
 @Service
 public class UpdateCustomerUseCase {
     private final CustomerGateway customerGateway;
+    private final PasswordManager passwordManager;
 
     public UpdateCustomerUseCase(CustomerGateway customerGateway) {
         this.customerGateway = customerGateway;
+        this.passwordManager = new PasswordManager();
     }
 
     public UpdateCustomerOutputDto execute(UpdateCustomerInputDto customer) throws Exception {
@@ -34,7 +37,7 @@ public class UpdateCustomerUseCase {
 
         customerTobeUpdated.ChangeAddress(address);
         customerTobeUpdated.ChangeName(customer.name());
-        customerTobeUpdated.ChangePassword(customer.password());
+        customerTobeUpdated.ChangePassword(passwordManager.encodePassword(customer.password()));
         customerTobeUpdated.ChangeIncomeValue(customer.incomeValue());
 
         this.customerGateway.update(customerTobeUpdated);

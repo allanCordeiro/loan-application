@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-public class Authorizer {
-    public String authorize(String customerEmail) {
+public class AuthenticationManager {
+    public String authenticate(String customerEmail) {
         return Jwts.builder()
                 .setSubject(customerEmail)
                 .setIssuer("localhost:8080") //TODO::change it
@@ -27,7 +27,6 @@ public class Authorizer {
     }
 
     private SecretKey jwtSecret() {
-        String secret = new EnvProperties().getProperty("JWT_SECRET");
-        return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+        return new JwtSecret().getSecret();
     }
 }
