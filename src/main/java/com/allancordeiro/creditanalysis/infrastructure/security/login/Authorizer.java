@@ -28,7 +28,6 @@ public class Authorizer {
 
     private SecretKey jwtSecret() {
         String secret = new EnvProperties().getProperty("JWT_SECRET");
-        System.out.println("meu JWT é " + secret);
         return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 }
