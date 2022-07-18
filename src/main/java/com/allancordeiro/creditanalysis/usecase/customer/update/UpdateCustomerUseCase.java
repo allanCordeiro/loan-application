@@ -48,7 +48,6 @@ public class UpdateCustomerUseCase {
                 customerTobeUpdated.getEmail(),
                 customerTobeUpdated.getRg(),
                 customerTobeUpdated.getCpf().GetMaskedCpf(),
-                customerTobeUpdated.getPassword(),
                 customerTobeUpdated.getIncomeValue().floatValue(),
                 new UpdateAddressOutputDto(
                         customerTobeUpdated.getAddress().getStreet(),

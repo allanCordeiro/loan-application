@@ -6,7 +6,6 @@ public record UpdateCustomerOutputDto(
         String email,
         String rg,
         String cpf,
-        String password,
         Float incomeValue,
         UpdateAddressOutputDto address
 ) {}
