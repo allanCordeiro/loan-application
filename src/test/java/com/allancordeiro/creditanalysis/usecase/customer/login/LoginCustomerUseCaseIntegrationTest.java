@@ -51,6 +51,7 @@ public class LoginCustomerUseCaseIntegrationTest {
         LoginCustomerOutputDto loginOutputDto = useCase.execute(loginInputDto);
 
         Assertions.assertNotNull(loginOutputDto);
+        System.out.println(loginOutputDto.token());
 
     }
 

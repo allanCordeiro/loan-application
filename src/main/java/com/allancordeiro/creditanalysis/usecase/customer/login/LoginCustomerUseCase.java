@@ -2,6 +2,7 @@ package com.allancordeiro.creditanalysis.usecase.customer.login;
 
 import com.allancordeiro.creditanalysis.domain.customer.entity.Customer;
 import com.allancordeiro.creditanalysis.domain.customer.gateway.CustomerGateway;
+import com.allancordeiro.creditanalysis.infrastructure.security.login.Authorizer;
 import com.allancordeiro.creditanalysis.infrastructure.security.login.PasswordManager;
 import com.allancordeiro.creditanalysis.infrastructure.security.login.exceptions.UnauthorizedException;
 import com.allancordeiro.creditanalysis.usecase.customer.find.FindCustomerInputDto;
@@ -36,7 +37,12 @@ public class LoginCustomerUseCase {
             throw new UnauthorizedException();
         }
 
-        return new LoginCustomerOutputDto("TBD token");
+        return new LoginCustomerOutputDto(this.generateToken(input.email()));
+    }
+
+    private String generateToken(String customerEmail) {
+        Authorizer authorizer = new Authorizer();
+        return authorizer.authorize(customerEmail);
     }
 
 
