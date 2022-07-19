@@ -1,10 +1,10 @@
-package com.allancordeiro.creditanalysis.infrastructure.db.postgresql.model;
+package com.allancordeiro.creditanalysis.infrastructure.db.model;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Timestamp;
 import java.util.UUID;
 
@@ -36,7 +36,8 @@ public class LoanApplicationModel {
 
     public LoanApplicationModel() {}
 
-    public LoanApplicationModel(UUID customerId, Float incomeValue, Date firstInstallmentDate, Integer installmentQty) {
+    public LoanApplicationModel(Long id, UUID customerId, Float incomeValue, Date firstInstallmentDate, Integer installmentQty) {
+        this.id = id;
         this.customerId = customerId;
         this.incomeValue = incomeValue;
         this.firstInstallmentDate = firstInstallmentDate;
@@ -63,7 +64,7 @@ public class LoanApplicationModel {
         return installmentQty;
     }
 
-
+    public void setId(Long id) { this.id = id; }
     public void setCustomerId(UUID customerId) {
         this.customerId = customerId;
     }

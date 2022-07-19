@@ -12,6 +12,7 @@ public class LoanApplication {
     private Number value;
     private LocalDate firstInstallmentDate;
     private Integer installmentQty;
+
     public LoanApplication(UUID customerId,
                            Number value,
                            LocalDate firstInstallmentDate,
@@ -44,6 +45,7 @@ public class LoanApplication {
     public Integer getInstallmentQty() {
         return installmentQty;
     }
+
 
     private void Validate() throws Exception {
         LoanApplicationValidator loanApplicationValidator = new LoanApplicationValidator();

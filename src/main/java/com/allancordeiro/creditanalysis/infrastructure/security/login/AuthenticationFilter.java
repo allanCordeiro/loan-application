@@ -25,7 +25,7 @@ import java.util.Date;
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     public final AuthenticationManager authenticationManager;
 
-    public static final Integer TOKEN_EXPIRATION = Integer.valueOf(new EnvProperties().getProperty("jwt.token.expiration"));
+    public static final Long TOKEN_EXPIRATION = Long.valueOf(new EnvProperties().getProperty("jwt.token.expiration"));
     public static final String TOKEN_GUID = new EnvProperties().getProperty("jwt.secret.key");
 
     public AuthenticationFilter(AuthenticationManager authenticationManager) {

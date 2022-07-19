@@ -5,11 +5,11 @@ import com.allancordeiro.creditanalysis.domain.customer.exceptions.CustomerNotFo
 import com.allancordeiro.creditanalysis.domain.customer.gateway.CustomerGateway;
 import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.Address;
 import com.allancordeiro.creditanalysis.domain.customer.valueObject.cpf.Cpf;
-import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.model.AddressModel;
-import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.model.CustomerModel;
-import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.repositories.customer.AddressRepository;
-import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.repositories.customer.CustomerRepository;
-import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.service.AddressService;
+import com.allancordeiro.creditanalysis.infrastructure.db.model.AddressModel;
+import com.allancordeiro.creditanalysis.infrastructure.db.model.CustomerModel;
+import com.allancordeiro.creditanalysis.infrastructure.db.repositories.customer.AddressRepository;
+import com.allancordeiro.creditanalysis.infrastructure.db.repositories.customer.CustomerRepository;
+import com.allancordeiro.creditanalysis.infrastructure.db.service.AddressService;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

@@ -4,10 +4,10 @@ import com.allancordeiro.creditanalysis.domain.customer.entity.Customer;
 import com.allancordeiro.creditanalysis.domain.customer.exceptions.CustomerNotFoundException;
 import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.Address;
 import com.allancordeiro.creditanalysis.domain.customer.valueObject.cpf.Cpf;
-import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.model.AddressModel;
-import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.model.CustomerModel;
-import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.repositories.customer.AddressRepository;
-import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.repositories.customer.CustomerRepository;
+import com.allancordeiro.creditanalysis.infrastructure.db.model.AddressModel;
+import com.allancordeiro.creditanalysis.infrastructure.db.model.CustomerModel;
+import com.allancordeiro.creditanalysis.infrastructure.db.repositories.customer.AddressRepository;
+import com.allancordeiro.creditanalysis.infrastructure.db.repositories.customer.CustomerRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 

@@ -1,8 +1,8 @@
 package com.allancordeiro.creditanalysis.usecase.customer.find;
 
 import com.allancordeiro.creditanalysis.domain.customer.exceptions.CustomerNotFoundException;
-import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.repositories.customer.AddressRepository;
-import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.repositories.customer.CustomerRepository;
+import com.allancordeiro.creditanalysis.infrastructure.db.repositories.customer.AddressRepository;
+import com.allancordeiro.creditanalysis.infrastructure.db.repositories.customer.CustomerRepository;
 import com.allancordeiro.creditanalysis.infrastructure.gateway.customer.CustomerGatewayDb;
 import com.allancordeiro.creditanalysis.usecase.customer.create.CreateAddressInputDto;
 import com.allancordeiro.creditanalysis.usecase.customer.create.CreateCustomerInputDto;

@@ -1,7 +1,7 @@
 package com.allancordeiro.creditanalysis.usecase.customer.login;
 
-import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.repositories.customer.AddressRepository;
-import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.repositories.customer.CustomerRepository;
+import com.allancordeiro.creditanalysis.infrastructure.db.repositories.customer.AddressRepository;
+import com.allancordeiro.creditanalysis.infrastructure.db.repositories.customer.CustomerRepository;
 import com.allancordeiro.creditanalysis.infrastructure.gateway.customer.CustomerGatewayDb;
 import com.allancordeiro.creditanalysis.infrastructure.security.login.exceptions.UnauthorizedException;
 import com.allancordeiro.creditanalysis.usecase.customer.create.CreateAddressInputDto;

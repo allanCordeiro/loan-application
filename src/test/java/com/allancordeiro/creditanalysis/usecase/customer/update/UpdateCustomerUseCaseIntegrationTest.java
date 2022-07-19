@@ -2,10 +2,9 @@ package com.allancordeiro.creditanalysis.usecase.customer.update;
 
 
 import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.Address;
-import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.repositories.customer.AddressRepository;
-import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.repositories.customer.CustomerRepository;
+import com.allancordeiro.creditanalysis.infrastructure.db.repositories.customer.AddressRepository;
+import com.allancordeiro.creditanalysis.infrastructure.db.repositories.customer.CustomerRepository;
 import com.allancordeiro.creditanalysis.infrastructure.gateway.customer.CustomerGatewayDb;
-import com.allancordeiro.creditanalysis.infrastructure.security.login.PasswordManager;
 import com.allancordeiro.creditanalysis.usecase.customer.create.CreateAddressInputDto;
 import com.allancordeiro.creditanalysis.usecase.customer.create.CreateCustomerInputDto;
 import com.allancordeiro.creditanalysis.usecase.customer.create.CreateCustomerOutputDto;

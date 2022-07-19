@@ -1,8 +1,8 @@
-package com.allancordeiro.creditanalysis.infrastructure.db.postgresql.service;
+package com.allancordeiro.creditanalysis.infrastructure.db.service;
 
 import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.Address;
-import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.model.AddressModel;
-import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.repositories.customer.AddressRepository;
+import com.allancordeiro.creditanalysis.infrastructure.db.model.AddressModel;
+import com.allancordeiro.creditanalysis.infrastructure.db.repositories.customer.AddressRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

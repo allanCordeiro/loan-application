@@ -1,4 +1,4 @@
-package com.allancordeiro.creditanalysis.infrastructure.db.postgresql.model;
+package com.allancordeiro.creditanalysis.infrastructure.db.model;
 
 
 import org.hibernate.annotations.CreationTimestamp;
