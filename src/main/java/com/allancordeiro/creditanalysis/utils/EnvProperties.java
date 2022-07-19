@@ -15,7 +15,6 @@ public class EnvProperties {
 
     public EnvProperties() {
         rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-        System.out.println(rootPath);
         try(InputStream input = new FileInputStream( rootPath + "application.properties")) {
             this.property = new Properties();
             this.property.load(input);

@@ -5,6 +5,7 @@ import com.allancordeiro.creditanalysis.domain.customer.valueObject.address.Addr
 import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.repositories.customer.AddressRepository;
 import com.allancordeiro.creditanalysis.infrastructure.db.postgresql.repositories.customer.CustomerRepository;
 import com.allancordeiro.creditanalysis.infrastructure.gateway.customer.CustomerGatewayDb;
+import com.allancordeiro.creditanalysis.infrastructure.security.login.PasswordManager;
 import com.allancordeiro.creditanalysis.usecase.customer.create.CreateAddressInputDto;
 import com.allancordeiro.creditanalysis.usecase.customer.create.CreateCustomerInputDto;
 import com.allancordeiro.creditanalysis.usecase.customer.create.CreateCustomerOutputDto;
@@ -16,8 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 @DataJpaTest
@@ -87,7 +87,6 @@ public class UpdateCustomerUseCaseIntegrationTest {
         assertEquals(customerUpdated.email(), outputData.email());
         assertEquals(customerUpdated.rg(), outputData.rg());
         assertEquals(customerUpdated.cpf(), outputData.cpf());
-        assertEquals(customerUpdated.password(), "nova senha");
         assertEquals(customerUpdated.incomeValue(), 8500.0F);
         assertEquals(customerUpdated.address().street(), updatedAddress.getStreet());
         assertEquals(customerUpdated.address().number(), updatedAddress.getNumber());

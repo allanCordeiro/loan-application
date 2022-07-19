@@ -115,7 +115,6 @@ public class UpdateCustomerControllerUnitTest {
                 "customer@emaiil.com",
                 "11321132-7",
                 "841.676.580-46",
-                "NewPassword",
                 7000.0F,
                 new UpdateAddressOutputDto(
                         "New street name",

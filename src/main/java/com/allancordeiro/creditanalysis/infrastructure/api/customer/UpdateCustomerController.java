@@ -2,7 +2,6 @@ package com.allancordeiro.creditanalysis.infrastructure.api.customer;
 
 import com.allancordeiro.creditanalysis.domain.customer.exceptions.CustomerGeneralException;
 import com.allancordeiro.creditanalysis.infrastructure.api.exception.BadRequestException;
-import com.allancordeiro.creditanalysis.infrastructure.security.login.Authorize;
 import com.allancordeiro.creditanalysis.usecase.customer.update.UpdateCustomerInputDto;
 import com.allancordeiro.creditanalysis.usecase.customer.update.UpdateCustomerOutputDto;
 import com.allancordeiro.creditanalysis.usecase.customer.update.UpdateCustomerUseCase;
@@ -23,7 +22,6 @@ public class UpdateCustomerController {
         this.updateCustomerUseCase = updateCustomerUseCase;
     }
 
-    @Authorize
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public UpdateCustomerOutputDto update(@PathVariable String id,
