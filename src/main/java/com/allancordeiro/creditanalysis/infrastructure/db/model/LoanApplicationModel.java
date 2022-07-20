@@ -18,7 +18,7 @@ public class LoanApplicationModel {
     @Column(name = "customer_id")
     private UUID customerId;
 
-    @Column(name = "value")
+    @Column(name = "loan_value")
     private Float value;
 
     @Column(name="first_installment_date")

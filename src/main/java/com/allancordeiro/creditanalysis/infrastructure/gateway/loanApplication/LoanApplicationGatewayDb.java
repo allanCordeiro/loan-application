@@ -38,6 +38,28 @@ public class LoanApplicationGatewayDb implements LoanApplicationGateway {
         this.loanApplicationRepository.save(loanApplicationModel);
     }
 
+    @Override
+    public LoanApplication createAndReturn(LoanApplication entity) throws Exception {
+        Date installmentDate = Date.from(entity.getFirstInstallmentDate()
+                .atStartOfDay(ZoneId.systemDefault()).toInstant());
+        LoanApplicationModel loanApplicationModel = new LoanApplicationModel(
+                entity.getCustomerId(),
+                entity.getValue().floatValue(),
+                installmentDate,
+                entity.getInstallmentQty()
+        );
+
+        LoanApplicationModel loanReturn = this.loanApplicationRepository.save(loanApplicationModel);
+        return new LoanApplication(
+                loanReturn.getId(),
+                loanReturn.getCustomerId(),
+                loanReturn.getValue(),
+                loanReturn.getFirstInstallmentDate()
+                        .toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                loanReturn.getInstallmentQty()
+        );
+    }
+
 
     @Override
     public ArrayList<LoanApplication> findByCustomerId(UUID customerId) {

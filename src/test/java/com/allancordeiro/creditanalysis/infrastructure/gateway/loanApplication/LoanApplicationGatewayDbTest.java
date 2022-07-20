@@ -71,17 +71,16 @@ public class LoanApplicationGatewayDbTest {
 
     @Test
     public void should_create_a_loan() throws Exception {
-        when(loanApplicationRepository.findById(Mockito.any(Long.class)))
-                .thenReturn(Optional.ofNullable(this.loanApplicationModel));
+        when(loanApplicationRepository.save(Mockito.any(LoanApplicationModel.class)))
+                .thenReturn(this.loanApplicationModel);
 
-        this.loanApplicationGatewayDb.create(this.loanApplication);
-        Optional<LoanApplication> loanOutput = this.loanApplicationGatewayDb.findById(1L);
+        LoanApplication loanOutput =this.loanApplicationGatewayDb.createAndReturn(this.loanApplication);
 
-        assertEquals(this.loanApplication.getId(), loanOutput.get().getId());
-        assertEquals(this.loanApplication.getCustomerId(), loanOutput.get().getCustomerId());
-        assertEquals(this.loanApplication.getValue(), loanOutput.get().getValue());
-        assertEquals(this.loanApplication.getInstallmentQty(), loanOutput.get().getInstallmentQty());
-        assertEquals(this.loanApplication.getFirstInstallmentDate(), loanOutput.get().getFirstInstallmentDate());
+        assertEquals(this.loanApplication.getId(), loanOutput.getId());
+        assertEquals(this.loanApplication.getCustomerId(), loanOutput.getCustomerId());
+        assertEquals(this.loanApplication.getValue(), loanOutput.getValue());
+        assertEquals(this.loanApplication.getInstallmentQty(), loanOutput.getInstallmentQty());
+        assertEquals(this.loanApplication.getFirstInstallmentDate(), loanOutput.getFirstInstallmentDate());
 
     }
 

@@ -11,4 +11,6 @@ import java.util.UUID;
 public interface LoanApplicationGateway extends DomainGateway<LoanApplication> {
     ArrayList<LoanApplication> findByCustomerId(UUID customerId);
     Optional<LoanApplication> findById(Long id) throws Exception;
+
+    LoanApplication createAndReturn(LoanApplication loanApplication) throws Exception;
 }
