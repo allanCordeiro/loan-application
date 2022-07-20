@@ -15,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,62 +32,65 @@ public class LoanApplicationGatewayDbTest {
     private LoanApplication loanApplication;
 
     private UUID customerId;
+    private LocalDate loanDate = LocalDate.now().plusMonths(2);
     private LoanApplicationModel loanApplicationModel;
     private LoanApplicationModel loanApplicationModel2;
-    private ArrayList<LoanApplicationModel> loanApplicationModelList;
+    private ArrayList<LoanApplicationModel> loanApplicationModelList = new ArrayList<>();
 
     @BeforeEach
     public void init() throws Exception {
         this.loanApplicationGatewayDb = new LoanApplicationGatewayDb(this.loanApplicationRepository);
         this.customerId = UUID.fromString("a06a5cb7-2638-451b-b1a1-3776b1807511");
         this.loanApplication = new LoanApplication(
+                1L,
                 this.customerId,
-                700F,
-                LocalDate.now().plusMonths(2),
+                700.0F,
+                loanDate,
                 56
         );
 
         this.loanApplicationModel = new LoanApplicationModel(
                 1L,
                 this.customerId,
-                700F,
-                Date.from(Instant.from(LocalDate.now().plusMonths(2))),
+                700.0F,
+                Date.from(loanDate.atStartOfDay(ZoneId.systemDefault()).toInstant()),
                 56
         );
 
         this.loanApplicationModel2 = new LoanApplicationModel(
-                1L,
+                2L,
                 this.customerId,
                 700F,
-                Date.from(Instant.from(LocalDate.now().plusMonths(2))),
+                Date.from(loanDate.atStartOfDay(ZoneId.systemDefault()).toInstant()),
                 56
         );
 
         this.loanApplicationModelList.add(loanApplicationModel);
         this.loanApplicationModelList.add(loanApplicationModel2);
-
-        when(loanApplicationRepository.findById(Mockito.any(Long.class)))
-                .thenReturn(Optional.ofNullable(this.loanApplicationModel));
-
-        when(loanApplicationRepository.findByCustomerId(Mockito.any(UUID.class)))
-                .thenReturn(this.loanApplicationModelList);
     }
 
     @Test
-    public void should_create_a_loan() {
-        Long loanId = this.loanApplicationGatewayDb.create(this.loanApplication);
-        LoanApplication loanOutput = this.loanApplicationGatewayDb.findById(loanId);
+    public void should_create_a_loan() throws Exception {
+        when(loanApplicationRepository.findById(Mockito.any(Long.class)))
+                .thenReturn(Optional.ofNullable(this.loanApplicationModel));
 
-        assertEquals(this.loanApplication.getId(), loanOutput.getId());
-        assertEquals(this.loanApplication.getCustomerId(), loanOutput.getCustomerId());
-        assertEquals(this.loanApplication.getValue(), loanOutput.getValue());
-        assertEquals(this.loanApplication.getInstallmentQty(), loanOutput.getInstallmentQty());
-        assertEquals(this.loanApplication.getFirstInstallmentDate(), loanOutput.getFirstInstallmentDate());
+        this.loanApplicationGatewayDb.create(this.loanApplication);
+        Optional<LoanApplication> loanOutput = this.loanApplicationGatewayDb.findById(1L);
+
+        assertEquals(this.loanApplication.getId(), loanOutput.get().getId());
+        assertEquals(this.loanApplication.getCustomerId(), loanOutput.get().getCustomerId());
+        assertEquals(this.loanApplication.getValue(), loanOutput.get().getValue());
+        assertEquals(this.loanApplication.getInstallmentQty(), loanOutput.get().getInstallmentQty());
+        assertEquals(this.loanApplication.getFirstInstallmentDate(), loanOutput.get().getFirstInstallmentDate());
 
     }
 
     @Test
     public void should_get_a_loan_list() {
+
+        when(loanApplicationRepository.findByCustomerId(Mockito.any(UUID.class)))
+                .thenReturn(this.loanApplicationModelList);
+
         ArrayList<LoanApplication> loanOutput = this.loanApplicationGatewayDb.findByCustomerId(this.customerId);
         assertEquals(2, loanOutput.size());
     }

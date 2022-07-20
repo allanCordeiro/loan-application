@@ -10,6 +10,5 @@ import java.util.UUID;
 public interface DomainGateway<T> {
     void create(T entity);
     void update(T entity) throws Exception;
-    Optional<T> findAll();
     Optional<T> findById(UUID id) throws Exception;
 }

@@ -23,6 +23,7 @@ public class LoanApplicationTest {
         UUID customerId = UUID.randomUUID();
         LocalDate firstInstallmentDate = LocalDate.now().plusMonths(2);
         LoanApplication loanApplication = new LoanApplication(
+                1L,
                 customerId,
                 5000.00,
                 firstInstallmentDate,

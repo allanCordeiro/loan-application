@@ -106,10 +106,6 @@ public class CustomerGatewayDb implements CustomerGateway {
         this.create(entity);
     }
 
-    @Override
-    public Optional<Customer> findAll() {
-        return Optional.empty();
-    }
 
     @Override
     public Optional<Customer> findById(UUID id) throws Exception {

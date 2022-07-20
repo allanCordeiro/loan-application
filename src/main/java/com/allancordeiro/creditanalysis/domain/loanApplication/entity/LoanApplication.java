@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class LoanApplication {
 
-    private UUID id;
+    private Long id;
     private UUID customerId;
     private Number value;
     private LocalDate firstInstallmentDate;
@@ -17,7 +17,6 @@ public class LoanApplication {
                            Number value,
                            LocalDate firstInstallmentDate,
                            Integer installmentQty) throws Exception {
-        this.id = UUID.randomUUID();
         this.customerId = customerId;
         this.value = value;
         this.firstInstallmentDate = firstInstallmentDate;
@@ -26,7 +25,21 @@ public class LoanApplication {
         this.Validate();
     }
 
-    public UUID getId() {
+    public LoanApplication(Long id,
+                           UUID customerId,
+                           Number value,
+                           LocalDate firstInstallmentDate,
+                           Integer installmentQty) throws Exception {
+        this.id = id;
+        this.customerId = customerId;
+        this.value = value;
+        this.firstInstallmentDate = firstInstallmentDate;
+        this.installmentQty = installmentQty;
+
+        this.Validate();
+    }
+
+    public Long getId() {
         return id;
     }
 

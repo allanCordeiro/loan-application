@@ -18,8 +18,8 @@ public class LoanApplicationModel {
     @Column(name = "customer_id")
     private UUID customerId;
 
-    @Column(name = "income_value")
-    private Float incomeValue;
+    @Column(name = "value")
+    private Float value;
 
     @Column(name="first_installment_date")
     private Date firstInstallmentDate;
@@ -36,13 +36,21 @@ public class LoanApplicationModel {
 
     public LoanApplicationModel() {}
 
-    public LoanApplicationModel(Long id, UUID customerId, Float incomeValue, Date firstInstallmentDate, Integer installmentQty) {
+    public LoanApplicationModel(Long id, UUID customerId, Float value, Date firstInstallmentDate, Integer installmentQty) {
         this.id = id;
         this.customerId = customerId;
-        this.incomeValue = incomeValue;
+        this.value = value;
         this.firstInstallmentDate = firstInstallmentDate;
         this.installmentQty = installmentQty;
     }
+
+    public LoanApplicationModel(UUID customerId, Float value, Date firstInstallmentDate, Integer installmentQty) {
+        this.customerId = customerId;
+        this.value = value;
+        this.firstInstallmentDate = firstInstallmentDate;
+        this.installmentQty = installmentQty;
+    }
+
 
     public Long getId() {
         return id;
@@ -53,7 +61,7 @@ public class LoanApplicationModel {
     }
 
     public Float getValue() {
-        return 00F;
+        return value;
     }
 
     public Date getFirstInstallmentDate() {
@@ -69,8 +77,8 @@ public class LoanApplicationModel {
         this.customerId = customerId;
     }
 
-    public void setValue(Float incomeValue) {
-        this.incomeValue = incomeValue;
+    public void setValue(Float value) {
+        this.value = value;
     }
 
     public void setFirstInstallmentDate(Date firstInstallmentDate) {
