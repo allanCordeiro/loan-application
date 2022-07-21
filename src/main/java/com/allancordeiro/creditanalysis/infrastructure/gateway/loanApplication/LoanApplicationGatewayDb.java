@@ -64,7 +64,6 @@ public class LoanApplicationGatewayDb implements LoanApplicationGateway {
     @Override
     public ArrayList<LoanApplication> findByCustomerId(UUID customerId) {
         ArrayList<LoanApplicationModel> model = this.loanApplicationRepository.findByCustomerId(customerId);
-
         return model.stream()
                 .map((loan) -> {
                     try {

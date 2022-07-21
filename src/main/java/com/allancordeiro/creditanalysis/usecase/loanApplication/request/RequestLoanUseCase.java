@@ -3,10 +3,12 @@ package com.allancordeiro.creditanalysis.usecase.loanApplication.request;
 import com.allancordeiro.creditanalysis.domain.loanApplication.entity.LoanApplication;
 import com.allancordeiro.creditanalysis.domain.loanApplication.gateway.LoanApplicationGateway;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RequestLoanUseCase {
     @Autowired
-    private LoanApplicationGateway loanApplicationGateway;
+    private final LoanApplicationGateway loanApplicationGateway;
 
     public RequestLoanUseCase(LoanApplicationGateway loanApplicationGateway) {
         this.loanApplicationGateway = loanApplicationGateway;

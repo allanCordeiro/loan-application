@@ -1,6 +1,7 @@
 package com.allancordeiro.creditanalysis.infrastructure.db.model;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -15,7 +16,8 @@ public class LoanApplicationModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "customer_id")
+    @Type(type = "org.hibernate.type.UUIDCharType")
+    @Column(name = "customer_id", columnDefinition = "CHAR(36)")
     private UUID customerId;
 
     @Column(name = "loan_value")
