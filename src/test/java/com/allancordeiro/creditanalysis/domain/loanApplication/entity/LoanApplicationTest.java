@@ -126,4 +126,19 @@ public class LoanApplicationTest {
         });
         assertEquals(FirstInstallmentDateIsNotAllowedException.class, exception.getClass());
     }
+
+    @Test
+    public void should_throw_exception_when_first_installment_date_is_in_the_past() {
+        Exception exception = assertThrows(FirstInstallmentDateIsNotAllowedException.class, () -> {
+            UUID customerId = UUID.randomUUID();
+            LocalDate firstInstallmentDate = LocalDate.now().plusMonths(-1);
+            LoanApplication loanApplication = new LoanApplication(
+                    customerId,
+                    5000.00,
+                    firstInstallmentDate,
+                    36
+            );
+        });
+        assertEquals(FirstInstallmentDateIsNotAllowedException.class, exception.getClass());
+    }
 }
