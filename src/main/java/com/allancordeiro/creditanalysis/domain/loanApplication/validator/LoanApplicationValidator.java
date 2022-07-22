@@ -39,5 +39,9 @@ public class LoanApplicationValidator implements ValidatorInterface<LoanApplicat
         if(entity.getFirstInstallmentDate().compareTo(dateLimit) > 0) {
             throw new FirstInstallmentDateIsNotAllowedException();
         }
+
+        if(entity.getFirstInstallmentDate().isBefore(LocalDate.now())) {
+            throw new FirstInstallmentDateIsNotAllowedException();
+        }
     }
 }
