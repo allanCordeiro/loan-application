@@ -1,6 +1,8 @@
 package com.allancordeiro.creditanalysis.domain.loanApplication.exceptions.installment.date;
 
-public class FirstInstallmentDateIsMandatoryException extends Exception{
+import com.allancordeiro.creditanalysis.domain.loanApplication.exceptions.LoanApplicationGeneralException;
+
+public class FirstInstallmentDateIsMandatoryException extends LoanApplicationGeneralException {
     public FirstInstallmentDateIsMandatoryException() {
         super("first installment date is mandatory");
     }

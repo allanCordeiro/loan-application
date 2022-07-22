@@ -1,6 +1,8 @@
 package com.allancordeiro.creditanalysis.domain.loanApplication.exceptions.value;
 
-public class ValueIsMandatoryException extends Exception{
+import com.allancordeiro.creditanalysis.domain.loanApplication.exceptions.LoanApplicationGeneralException;
+
+public class ValueIsMandatoryException extends LoanApplicationGeneralException {
     public ValueIsMandatoryException() {
         super("value is mandatory");
     }

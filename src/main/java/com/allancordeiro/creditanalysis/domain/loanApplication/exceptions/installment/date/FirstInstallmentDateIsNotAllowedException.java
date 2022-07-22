@@ -1,6 +1,8 @@
 package com.allancordeiro.creditanalysis.domain.loanApplication.exceptions.installment.date;
 
-public class FirstInstallmentDateIsNotAllowedException extends Exception{
+import com.allancordeiro.creditanalysis.domain.loanApplication.exceptions.LoanApplicationGeneralException;
+
+public class FirstInstallmentDateIsNotAllowedException extends LoanApplicationGeneralException {
     public FirstInstallmentDateIsNotAllowedException() {
         super("first installment date is not allowed");
     }

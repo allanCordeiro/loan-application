@@ -1,6 +1,8 @@
 package com.allancordeiro.creditanalysis.domain.loanApplication.exceptions.customer;
 
-public class CustomerIdIsMandatoryException extends Exception {
+import com.allancordeiro.creditanalysis.domain.loanApplication.exceptions.LoanApplicationGeneralException;
+
+public class CustomerIdIsMandatoryException extends LoanApplicationGeneralException {
     public CustomerIdIsMandatoryException() {
         super("customer id is mandatory");
     }

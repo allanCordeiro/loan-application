@@ -1,6 +1,8 @@
 package com.allancordeiro.creditanalysis.domain.loanApplication.exceptions.installment.quantity;
 
-public class InstallmentQtyIsNotAllowedException extends Exception{
+import com.allancordeiro.creditanalysis.domain.loanApplication.exceptions.LoanApplicationGeneralException;
+
+public class InstallmentQtyIsNotAllowedException extends LoanApplicationGeneralException {
     public InstallmentQtyIsNotAllowedException() {
         super("installment quantity is not allowed");
     }

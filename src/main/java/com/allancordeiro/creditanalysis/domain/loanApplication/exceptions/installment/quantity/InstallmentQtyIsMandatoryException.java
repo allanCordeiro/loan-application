@@ -1,6 +1,8 @@
 package com.allancordeiro.creditanalysis.domain.loanApplication.exceptions.installment.quantity;
 
-public class InstallmentQtyIsMandatoryException extends Exception{
+import com.allancordeiro.creditanalysis.domain.loanApplication.exceptions.LoanApplicationGeneralException;
+
+public class InstallmentQtyIsMandatoryException extends LoanApplicationGeneralException {
     public InstallmentQtyIsMandatoryException() {
         super("installment quantity is mandatory");
     }
