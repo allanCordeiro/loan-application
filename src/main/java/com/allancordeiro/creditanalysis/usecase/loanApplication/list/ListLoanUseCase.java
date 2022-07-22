@@ -18,11 +18,9 @@ public class ListLoanUseCase {
 
     @Autowired
     private final LoanApplicationGateway loanApplicationGateway;
-    @Autowired
-    private final CustomerGateway customerGateway;
-    public ListLoanUseCase(LoanApplicationGateway loanApplicationGateway, CustomerGateway customerGateway) {
+
+    public ListLoanUseCase(LoanApplicationGateway loanApplicationGateway) {
         this.loanApplicationGateway = loanApplicationGateway;
-        this.customerGateway = customerGateway;
     }
 
     public ArrayList<ListLoanOutputDto> execute(ListLoanInputDto input) throws Exception {
@@ -33,15 +31,10 @@ public class ListLoanUseCase {
         return loans.stream()
                 .map((loan) -> {
                     try {
-                        customerDetail customerDetail = this.getCustomerDetail(loan.getCustomerId());
                         return new ListLoanOutputDto(
                                 loan.getId(),
-                                loan.getCustomerId(),
                                 loan.getValue().floatValue(),
-                                loan.getFirstInstallmentDate(),
-                                loan.getInstallmentQty(),
-                                customerDetail.customerEmail(),
-                                customerDetail.customerIncomeValue()
+                                loan.getInstallmentQty()
                         );
                     } catch (Exception e) {
                         throw new RuntimeException(e);
@@ -50,12 +43,4 @@ public class ListLoanUseCase {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    private customerDetail getCustomerDetail(UUID customerId) throws Exception {
-        Customer customer = this.customerGateway.findById(customerId)
-                .orElseThrow(CustomerNotFoundException::new);
-
-        return new customerDetail(customer.getEmail(), customer.getIncomeValue().floatValue());
-    }
-
-    public record customerDetail(String customerEmail, Float customerIncomeValue) {}
 }
