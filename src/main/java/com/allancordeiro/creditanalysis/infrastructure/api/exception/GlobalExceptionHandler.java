@@ -40,7 +40,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(exceptionDetails, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(UnauthorizedException.class)
+    @ExceptionHandler(ForbidenException.class)
     public ResponseEntity<?> UnauthorizedException(UnauthorizedException ex, WebRequest request) {
         ExceptionDetails exceptionDetails = new ExceptionDetails(new Date(),
                 ex.getMessage(),
@@ -52,7 +52,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> globalExceptionHandler(Exception ex, WebRequest request) {
         ExceptionDetails exceptionDetails = new ExceptionDetails(new Date(),
-                ex.getMessage(),
+                "Internal server error. Reach out sysadmin.",
                 request.getDescription(false)
         );
         System.out.println(ex);

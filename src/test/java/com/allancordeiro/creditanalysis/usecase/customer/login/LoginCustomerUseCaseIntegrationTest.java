@@ -77,8 +77,9 @@ public class LoginCustomerUseCaseIntegrationTest {
             );
             inputUseCase.execute(customerInputDto);
 
-            LoginCustomerInputDto loginInputDto = new LoginCustomerInputDto(customerInputDto.email(), "a_different_password");
+            LoginCustomerInputDto loginInputDto = new LoginCustomerInputDto("adifferent@email.com", "a_different_password");
             LoginCustomerUseCase useCase = new LoginCustomerUseCase(customerGatewayDb);
+
             useCase.execute(loginInputDto);
         });
         assertEquals(UnauthorizedException.class, exception.getClass());

@@ -9,6 +9,7 @@ import com.allancordeiro.creditanalysis.usecase.customer.find.FindCustomerUseCas
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class LoginCustomerUseCase {
@@ -23,26 +24,21 @@ public class LoginCustomerUseCase {
     public LoginCustomerOutputDto execute(LoginCustomerInputDto input) throws Exception {
         FindCustomerUseCase findUseCase = new FindCustomerUseCase(this.customerGateway);
 
-        Optional<FindCustomerOutputDto> customer = findUseCase.execute(
+        FindCustomerOutputDto customer = findUseCase.execute(
                 new FindCustomerInputDto(input.email())
-        );
-        String password = "enumeration_defense";
+        ).orElseThrow(UnauthorizedException::new);
+
+        /*String password = "enumeration_defense";
         if(customer.isPresent()) {
             password = customer.get().password();
         }
 
         if(!passwordManager.match(password, input.password()) || customer.isEmpty()) {
             throw new UnauthorizedException();
-        }
+        }*/
 
-        return new LoginCustomerOutputDto(this.generateToken(input.email()));
+        return new LoginCustomerOutputDto(
+                UUID.fromString(customer.id()));
+
     }
-
-    private String generateToken(String customerEmail) {
-        //AuthenticationManager authenticationManager = new AuthenticationManager();
-        //return authenticationManager.authenticate(customerEmail);
-        return "hello";
-    }
-
-
 }
