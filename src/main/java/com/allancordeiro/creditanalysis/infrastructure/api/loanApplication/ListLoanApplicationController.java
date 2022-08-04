@@ -50,9 +50,5 @@ public class ListLoanApplicationController {
         } catch (UnauthorizedException ex) {
             throw new ForbidenException(ex);
         }
-//        catch (Exception ex) {
-//            System.out.println(ex);
-//            throw new Exception("Internal server error. Reach out sysadmin.");
-//        }
     }
 }

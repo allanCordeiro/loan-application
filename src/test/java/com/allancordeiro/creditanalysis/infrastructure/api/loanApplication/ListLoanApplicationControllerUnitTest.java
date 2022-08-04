@@ -1,5 +1,9 @@
 package com.allancordeiro.creditanalysis.infrastructure.api.loanApplication;
 
+import com.allancordeiro.creditanalysis.infrastructure.security.login.userdetails.UserDetailData;
+import com.allancordeiro.creditanalysis.usecase.customer.login.LoginCustomerInputDto;
+import com.allancordeiro.creditanalysis.usecase.customer.login.LoginCustomerOutputDto;
+import com.allancordeiro.creditanalysis.usecase.customer.login.LoginCustomerUseCase;
 import com.allancordeiro.creditanalysis.usecase.loanApplication.list.ListLoanInputDto;
 import com.allancordeiro.creditanalysis.usecase.loanApplication.list.ListLoanOutputDto;
 import com.allancordeiro.creditanalysis.usecase.loanApplication.list.ListLoanUseCase;
@@ -16,6 +20,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -41,15 +48,19 @@ class ListLoanApplicationControllerUnitTest {
     @Mock
     private ListLoanUseCase useCase;
 
+    @Mock
+    private LoginCustomerUseCase loginCustomerUseCase;
+
     @InjectMocks
     private ListLoanApplicationController listLoanApplicationController;
 
     private final ObjectMapper objectMapper = new Jackson2ObjectMapperBuilder().build();
 
     private ArrayList<ListLoanOutputDto> loanList = new ArrayList<>();
+    private final UUID customerId = UUID.randomUUID();
 
     @BeforeEach
-    public void init() {
+    public void init() throws Exception {
         ListLoanOutputDto loanInputDto = new ListLoanOutputDto(
                 1L,
                 7500F,
@@ -68,15 +79,26 @@ class ListLoanApplicationControllerUnitTest {
 
         mockMvc = MockMvcBuilders.standaloneSetup(listLoanApplicationController)
                 .build();
+
+        when(this.loginCustomerUseCase.execute(Mockito.any(LoginCustomerInputDto.class))).thenReturn(
+                new LoginCustomerOutputDto(customerId)
+        );
+
+        UserDetailData userDetails = new UserDetailData(
+                new LoginCustomerInputDto("user@customer.com", "password")
+        );
+        Authentication authentication = Mockito.mock(Authentication.class);
+        SecurityContext securityContext = Mockito.mock(SecurityContext.class);
+        Mockito.when(securityContext.getAuthentication()).thenReturn(authentication);
+        SecurityContextHolder.setContext(securityContext);
     }
 
     @Test
     public void should_get_a_loan_app_list() throws Exception {
-        UUID customerId = UUID.randomUUID();
         when(this.useCase.execute(Mockito.any(ListLoanInputDto.class))).thenReturn(this.loanList);
         ArrayList<ListLoanOutputDto> resultList = this.useCase.execute(new ListLoanInputDto(customerId));
 
-        this.mockMvc.perform(get("/loans/1aab11a1-d4db-46c0-aced-e021f9339b79")
+        this.mockMvc.perform(get("/loans/" + customerId.toString())
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("utf-8")
                 )
