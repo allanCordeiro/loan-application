@@ -1,29 +1,27 @@
 package com.allancordeiro.creditanalysis.utils;
 
-import org.springframework.stereotype.Component;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-@Component
-public class EnvProperties {
+public class EnvProperties  {
+    private Properties properties = new Properties();
 
-    private Properties property;
-    private String rootPath;
+    public EnvProperties() {}
 
-    public EnvProperties() {
-        rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
-        try(InputStream input = new FileInputStream( rootPath + "application.properties")) {
-            this.property = new Properties();
-            this.property.load(input);
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    public String getProperty(String propertyKey) {
+        try {
+            this.PropertiesUtility();
+            return this.properties.getProperty(propertyKey);
+        } catch (IOException ioEx) {
+            return "0";
         }
     }
-    public String getProperty(String property) {
-        return this.property.getProperty(property);
+    protected void PropertiesUtility() throws IOException {
+        InputStream inputStream =
+                getClass().getClassLoader().getResourceAsStream("application.properties");
+        properties.load(inputStream);
     }
+
 }

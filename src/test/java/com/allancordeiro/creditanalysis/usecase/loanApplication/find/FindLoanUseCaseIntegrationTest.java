@@ -13,6 +13,7 @@ import com.allancordeiro.creditanalysis.usecase.loanApplication.list.ListLoanInp
 import com.allancordeiro.creditanalysis.usecase.loanApplication.list.ListLoanOutputDto;
 import com.allancordeiro.creditanalysis.usecase.loanApplication.list.ListLoanUseCase;
 import com.allancordeiro.creditanalysis.usecase.loanApplication.request.RequestLoanInputDto;
+import com.allancordeiro.creditanalysis.usecase.loanApplication.request.RequestLoanOutputDto;
 import com.allancordeiro.creditanalysis.usecase.loanApplication.request.RequestLoanUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -42,6 +43,7 @@ public class FindLoanUseCaseIntegrationTest {
     private UUID customerId = UUID.randomUUID();
     private CreateCustomerOutputDto customerOutputDto;
     private RequestLoanInputDto inputDto;
+    private RequestLoanOutputDto requested;
 
     @BeforeEach
     public void init() throws Exception {
@@ -74,15 +76,15 @@ public class FindLoanUseCaseIntegrationTest {
                 LocalDate.now().plusMonths(2L),
                 36
         );
-        this.requestUseCase.execute(inputDto);
+        this.requested = this.requestUseCase.execute(inputDto);
     }
 
     @Test
-    public void should_get_a_loan_list() throws Exception {
+    public void should_get_a_loan_info() throws Exception {
         CustomerGatewayDb customerGatewayDb = new CustomerGatewayDb(this.customerRepository, this.addressRepository);
         LoanApplicationGatewayDb loanApplicationGatewayDb = new LoanApplicationGatewayDb(this.loanAppRepository);
         FindLoanUseCase listUseCase = new FindLoanUseCase(loanApplicationGatewayDb, customerGatewayDb);
-        FindLoanOutputDto loanOutputDto = listUseCase.execute(new FindLoanInputDto(1L));
+        FindLoanOutputDto loanOutputDto = listUseCase.execute(new FindLoanInputDto(this.requested.id()));
 
         assertNotNull(loanOutputDto.id());
         assertEquals(this.inputDto.customerId(), loanOutputDto.customerId());
