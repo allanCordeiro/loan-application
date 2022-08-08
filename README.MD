@@ -2,9 +2,9 @@
 
 A motivação deste repositório pode ser encontrada nesse link: 
 
-![Tests]https://img.shields.io/github/workflow/status/allanCordeiro/loan-application/Java%20CI?label=Tests
+![Tests](https://img.shields.io/github/workflow/status/allanCordeiro/loan-application/Java%20CI?label=Tests)
 
-![Workflow]https://img.shields.io/github/workflow/status/allanCordeiro/loan-application/Java%20CI
+![Workflow](https://img.shields.io/github/workflow/status/allanCordeiro/loan-application/Java%20CI)
 
 ## Caso de uso
 
