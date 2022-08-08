@@ -28,6 +28,17 @@ No detalhe do empréstimo, devemos retornar: código do empréstimo, valor, quan
 
 Quando finalizar, você deve criar uma tag no GitHub chamada tqi_evolution_avaliacao. Desta forma, nosso time já irá avaliar o material final.
 
+### Instalação e utilização
+
+- Clonar o repositório
+- Executar o comando _docker compose up -d_
+
+O serviço está configurado inicialmente para executar sobre a porta 8080.
+
+Caso o container credit-analysis não execute, é possível executar os passos:
+- Rebuildar o docker file através do comando _mvn clean package_
+- Ou utilizar a imagem disponível no [Docker Hub](https://hub.docker.com/repository/docker/allancordeiros/credit-analysis). 
+
 ### Endpoints
 #### Login
 ```
