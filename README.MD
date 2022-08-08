@@ -2,6 +2,10 @@
 
 A motivação deste repositório pode ser encontrada nesse link: 
 
+![Tests]https://img.shields.io/github/workflow/status/allanCordeiro/loan-application/Java%20CI?label=Tests
+
+![Workflow]https://img.shields.io/github/workflow/status/allanCordeiro/loan-application/Java%20CI
+
 ## Caso de uso
 
 É importante sabermos por que você decidiu fazer a solução, portanto deixe clara a motivação das suas escolhas. 
