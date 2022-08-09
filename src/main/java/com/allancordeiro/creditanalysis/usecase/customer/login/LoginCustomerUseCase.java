@@ -28,14 +28,6 @@ public class LoginCustomerUseCase {
                 new FindCustomerInputDto(input.email())
         ).orElseThrow(UnauthorizedException::new);
 
-        /*String password = "enumeration_defense";
-        if(customer.isPresent()) {
-            password = customer.get().password();
-        }
-
-        if(!passwordManager.match(password, input.password()) || customer.isEmpty()) {
-            throw new UnauthorizedException();
-        }*/
 
         return new LoginCustomerOutputDto(
                 UUID.fromString(customer.id()));

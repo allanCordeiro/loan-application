@@ -1,6 +1,6 @@
 # Sistema de análise de crédito
 
-A motivação deste repositório pode ser encontrada nesse link: 
+A motivação deste repositório pode ser encontrada nesse [link](https://medium.com/@AllanCordeiro85/clean-architecture-com-java-pra-que-ac617f2e4393): 
 
 ![Tests](https://img.shields.io/github/workflow/status/allanCordeiro/loan-application/Java%20CI?label=Tests)
 
